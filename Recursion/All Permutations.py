@@ -18,3 +18,28 @@ class Solution:
         ds=[]
         self.f(ds,nums,freq,ans)
         return ans
+
+    
+    
+# Approch 2
+
+class Solution:
+    def f(self,ind,arr,ans):
+        if ind==len(arr):
+            ds=[]
+            for i in range(len(arr)):
+                ds.append(arr[i])
+            ans.append(ds[:])
+            return 
+        for i in range(ind,len(arr)):
+            arr[i],arr[ind]=arr[ind],arr[i]
+            self.f(ind+1,arr,ans)
+            arr[i],arr[ind]=arr[ind],arr[i]
+        
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        n=len(nums)
+        ans=[]
+        self.f(0,nums,ans)
+        return ans
+    
+    
